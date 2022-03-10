@@ -1,0 +1,62 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="tanks.io"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="14"
+8-->D:\PortableGit\LastVersion\tank2d_io\android\AndroidManifest.xml
+9        android:targetSdkVersion="30" />
+9-->D:\PortableGit\LastVersion\tank2d_io\android\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->D:\PortableGit\LastVersion\tank2d_io\android\AndroidManifest.xml:4:5-66
+11-->D:\PortableGit\LastVersion\tank2d_io\android\AndroidManifest.xml:4:22-64
+12    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+12-->D:\PortableGit\LastVersion\tank2d_io\android\AndroidManifest.xml:5:5-75
+12-->D:\PortableGit\LastVersion\tank2d_io\android\AndroidManifest.xml:5:22-73
+13    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+13-->D:\PortableGit\LastVersion\tank2d_io\android\AndroidManifest.xml:6:5-79
+13-->D:\PortableGit\LastVersion\tank2d_io\android\AndroidManifest.xml:6:22-76
+14
+15    <application
+15-->D:\PortableGit\LastVersion\tank2d_io\android\AndroidManifest.xml:8:5-25:19
+16        android:allowBackup="true"
+16-->D:\PortableGit\LastVersion\tank2d_io\android\AndroidManifest.xml:9:9-35
+17        android:appCategory="game"
+17-->D:\PortableGit\LastVersion\tank2d_io\android\AndroidManifest.xml:12:9-35
+18        android:debuggable="true"
+19        android:icon="@drawable/ic_launcher"
+19-->D:\PortableGit\LastVersion\tank2d_io\android\AndroidManifest.xml:10:9-45
+20        android:isGame="true"
+20-->D:\PortableGit\LastVersion\tank2d_io\android\AndroidManifest.xml:11:9-30
+21        android:label="@string/app_name"
+21-->D:\PortableGit\LastVersion\tank2d_io\android\AndroidManifest.xml:13:9-41
+22        android:testOnly="true"
+23        android:theme="@style/GdxTheme" >
+23-->D:\PortableGit\LastVersion\tank2d_io\android\AndroidManifest.xml:14:9-40
+24        <activity
+24-->D:\PortableGit\LastVersion\tank2d_io\android\AndroidManifest.xml:15:9-24:20
+25            android:name="tanks.io.AndroidLauncher"
+25-->D:\PortableGit\LastVersion\tank2d_io\android\AndroidManifest.xml:16:13-52
+26            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout"
+26-->D:\PortableGit\LastVersion\tank2d_io\android\AndroidManifest.xml:19:13-107
+27            android:label="@string/app_name"
+27-->D:\PortableGit\LastVersion\tank2d_io\android\AndroidManifest.xml:17:13-45
+28            android:screenOrientation="landscape" >
+28-->D:\PortableGit\LastVersion\tank2d_io\android\AndroidManifest.xml:18:13-50
+29            <intent-filter>
+29-->D:\PortableGit\LastVersion\tank2d_io\android\AndroidManifest.xml:20:13-23:29
+30                <action android:name="android.intent.action.MAIN" />
+30-->D:\PortableGit\LastVersion\tank2d_io\android\AndroidManifest.xml:21:17-69
+30-->D:\PortableGit\LastVersion\tank2d_io\android\AndroidManifest.xml:21:25-66
+31
+32                <category android:name="android.intent.category.LAUNCHER" />
+32-->D:\PortableGit\LastVersion\tank2d_io\android\AndroidManifest.xml:22:17-77
+32-->D:\PortableGit\LastVersion\tank2d_io\android\AndroidManifest.xml:22:27-74
+33            </intent-filter>
+34        </activity>
+35    </application>
+36
+37</manifest>

@@ -1,0 +1,4 @@
+tanks/io/BuildConfig.java
+ tanks.io.BuildConfig
+tanks/io/AndroidLauncher.java
+ tanks.io.AndroidLauncher

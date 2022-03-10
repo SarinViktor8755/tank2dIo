@@ -1,0 +1,9 @@
+tanks.io:style/GdxTheme = 0x7f040000
+tanks.io:string/app_name = 0x7f030000
+tanks.io:mipmap/ic_launcher_foreground = 0x7f020001
+tanks.io:mipmap/ic_launcher = 0x7f020000
+tanks.io:drawable/ic_launcher_foreground = 0x7f010003
+tanks.io:drawable/ic_launcher_background = 0x7f010002
+tanks.io:drawable/ic_launcher = 0x7f010001
+tanks.io:mipmap/ic_launcher_round = 0x7f020002
+tanks.io:drawable/$ic_launcher_foreground__0 = 0x7f010000

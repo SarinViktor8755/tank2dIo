@@ -1,0 +1,4 @@
+#Fri Feb 18 09:15:24 GMT+06:00 2022
+base.0=D\:\\PortableGit\\LastVersion\\tank2d_io\\android\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
