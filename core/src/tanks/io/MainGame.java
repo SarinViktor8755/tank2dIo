@@ -5,6 +5,8 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 
+import java.io.IOException;
+
 import tanks.io.Assets.AssetsManagerGame;
 import tanks.io.ClientApi.MainClient;
 import tanks.io.Screens.GamePlayScreen;
@@ -62,11 +64,16 @@ public class MainGame extends Game {
         this.setScreen(this.gsp);
     }
 
-    public void startGameSPley() {
+    public void startGameSPley()  {
         mainMenu.dispose();
         assetsManagerGame.loadAllAsseGame();
         this.gsp = new GamePlayScreen(this);
         this.setScreen(this.gsp);
+        try {
+            mainClient.getClient().dispose();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void switchingFromGameMenu() {
