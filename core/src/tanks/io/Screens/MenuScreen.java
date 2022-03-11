@@ -41,16 +41,20 @@ public class MenuScreen implements Screen {
     private Texture logo;
 
     private float timeInScreen;
-    private float timerStartGame;
-    private boolean startgame;
+    private float timerStartGame; // переменная для анимации
+
+    private boolean startgameMP; // флаг старта мультиплеерной игры
+    private boolean startgameSP; // флаг старта диночной игры
 
     public Label statusConnetct;
+//    public Label singelGame;
 
     //////////////
     private Stage stageMenu;
     private Skin skinMenu;
 
     TextButton textButton;
+    TextButton singelGame;
 
     private boolean button_start_click;
 
@@ -61,13 +65,12 @@ public class MenuScreen implements Screen {
 
     public MenuScreen(final MainGame mainGame) {
 
-        System.out.println();
         button_start_click = false;
 
         this.mainGame = mainGame;
         timeInScreen = 0;
         timerStartGame = 0;
-        startgame = false;
+        startgameMP = false;
 
         batch = new SpriteBatch();
         camera = new OrthographicCamera();
@@ -97,12 +100,18 @@ public class MenuScreen implements Screen {
         statusConnetct.setColor(Color.DARK_GRAY);
         statusConnetct.setFontScale(.6f);
 
+//        singelGame = new Label("single player",skinMenu);
+//        singelGame.setPosition(340,170);
+//        singelGame.setColor(Color.DARK_GRAY);
+//        singelGame.setFontScale(.6f);
+
       //  textField.setFillParent(true);
 
 
     //    System.out.println(viewport.getRightGutterX());
 
         textButton = new TextButton("Play Game", skinMenu);
+        singelGame = new TextButton("Singel game", skinMenu);
         ///System.out.println(textField.getText());
 
         textButton.setX(350);
@@ -122,7 +131,7 @@ public class MenuScreen implements Screen {
                     mainClient.getNetworkPacketStock().toSendButtonStartClick();
                     button_start_click = true;
                 }
-                startgame = true;
+                startgameMP = true;
 
                 //System.out.println(textField.getText());
                 if(!mainClient.getClient().isConnected()) {
@@ -149,15 +158,39 @@ public class MenuScreen implements Screen {
                     button_start_click = true;
                 }
                 if(!mainClient.getClient().isConnected()) return;
-                startgame = true;
+                startgameMP = true;
 
 
             }
         });
 
+        singelGame.addListener(new InputListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                System.out.println("touchDown");
+
+                return true;
+            }
+
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                System.out.println("touchUp");
+                startgameSP = true;
+                mainGame.assetsManagerGame.loadAllAsseGame();
+                NikName.setNikName(textField.getText());
+
+            }
+        });
+
+
+        singelGame.setX(350);
+        singelGame.setY(120);
+
         stageMenu.addActor(textButton);
         stageMenu.addActor(textField);
+        stageMenu.addActor(singelGame);
         stageMenu.addActor(statusConnetct);
+
         Gdx.input.setInputProcessor(stageMenu);
     }
 
@@ -191,7 +224,7 @@ public class MenuScreen implements Screen {
     private void upDateScreen() {
         mainGame.updateClien();
        // statusConnetct.setText(mainClient.getClient().isConnected() +"");
-
+        this.timeInScreen = Gdx.graphics.getDeltaTime() + this.timeInScreen;
         if(mainClient.getClient().isConnected()){
          //   System.out.println(MathUtils.sin(Gdx.graphics.getDeltaTime()));
            // statusConnetct.setText("Ping :" + mainClient.getPing());
@@ -203,11 +236,17 @@ public class MenuScreen implements Screen {
             statusConnetct.setColor(Color.RED);
             textButton.setText("Connect");
         }
-        this.timeInScreen = Gdx.graphics.getDeltaTime() + this.timeInScreen;
-        if (startgame) {
-            timerStartGame = timerStartGame + Gdx.graphics.getDeltaTime() * 1.5f;
+
+        if (startgameMP || startgameSP) {
+            timerStartGame = timerStartGame + Gdx.graphics.getDeltaTime(); // задержка во воремени для анимации
         }
-        if (timerStartGame > 1) mainGame.startGamePley();
+
+        if (timerStartGame > 1) {
+            if(startgameMP) mainGame.startGameMPley();
+            if(startgameSP) mainGame.startGameSPley();
+
+        }
+        System.out.println(timerStartGame);
         // if (timeInScreen > 3.2f) mainGame.startGamePley();
        // kefMashtab = Interpolation.bounceOut.apply(MathUtils.sin(timeInScreen) + 1);
         //    System.out.println(kefMashtab);
@@ -242,8 +281,12 @@ public class MenuScreen implements Screen {
         logo.dispose();
     }
 
-    public void setStartgame(boolean startgame) {
-        this.startgame = startgame;
+    public void setStartgameMP(boolean startgame) {
+        this.startgameMP = startgame;
+    }
+
+    public void setStartgameSP(boolean startgame) {
+        this.startgameSP = startgame;
     }
 
 

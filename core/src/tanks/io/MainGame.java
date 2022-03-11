@@ -33,7 +33,7 @@ public class MainGame extends Game {
         assetManager = new AssetManager();
         assetsManagerGame = new AssetsManagerGame(assetManager);
 
-       // this.getAllAssets();
+        // this.getAllAssets();
 
         if (tip == 1) ANDROID = true;
         else ANDROID = false;
@@ -47,7 +47,7 @@ public class MainGame extends Game {
 
     @Override
     public void create() {
-       // tokken = NikName.getTokken();
+        // tokken = NikName.getTokken();
         assetsManagerGame.loadAllAssetMenu();
         mainMenu = new MenuScreen(this);
         this.setScreen(mainMenu);
@@ -55,18 +55,24 @@ public class MainGame extends Game {
 
     }
 
-    public void startGamePley(){
+    public void startGameMPley() {
         mainMenu.dispose();
         assetsManagerGame.loadAllAsseGame();
         this.gsp = new GamePlayScreen(this);
         this.setScreen(this.gsp);
-
     }
 
-    public void switchingFromGameMenu(){
-    //    playScreen.dispose();
+    public void startGameSPley() {
+        mainMenu.dispose();
+        assetsManagerGame.loadAllAsseGame();
+        this.gsp = new GamePlayScreen(this);
+        this.setScreen(this.gsp);
+    }
+
+    public void switchingFromGameMenu() {
+        //    playScreen.dispose();
         //assetsManagerGame.loadAllAsseGame();
-       //this.gsp.dispose();
+        //this.gsp.dispose();
         mainMenu = new MenuScreen(this);
         this.setScreen(mainMenu);
 
@@ -81,7 +87,7 @@ public class MainGame extends Game {
     }
 
 
-    public void getAllAssets(){
+    public void getAllAssets() {
         this.assetManager = new AssetManager();
         this.assetManager.update();
         this.assetManager.finishLoading();
@@ -91,7 +97,7 @@ public class MainGame extends Game {
         return assetManager;
     }
 
-    public void updateClien(){
+    public void updateClien() {
         this.getMainClient().upDateClient();
     }
 

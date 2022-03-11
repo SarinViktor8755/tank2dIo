@@ -65,6 +65,9 @@ public class GamePlayScreen implements Screen {
         getMainGame().getMainClient().getNetworkPacketStock().toSendMyNik();
     }
 
+    public GamePlayScreen() {
+    }
+
     @Override
     public void show() {
         controller.getDirectionMovement().set(0, 0);
@@ -212,7 +215,6 @@ public class GamePlayScreen implements Screen {
     }
 
     private void startFlashForMainTank() {
-
         Vector2 smooke = tank.getPosition().cpy().sub(tank.getDirection_tower().cpy().nor().scl(-30));
         if (controller.isAttackButon()) {
             if (!tank.redyToAttack()) return;

@@ -16,8 +16,8 @@ tanks/io/Units/Tanks/LogikTank.java
  tanks.io.Units.Tanks.LogikTank
 tanks/io/Locations/RadspurenTank.java
  tanks.io.Locations.RadspurenTank
-tanks/io/MainGame.java
- tanks.io.MainGame
+tanks/io/ClientApi/StandratPackage.java
+ tanks.io.ClientApi.StandratPackage
 tanks/io/Screens/GamePlayScreen.java
  tanks.io.Screens.GamePlayScreen
 tanks/io/Locations/Collision/MainCollision.java
@@ -94,9 +94,8 @@ tanks/io/ParticleEffect/PasricalExplosionBigParameter.java
  tanks.io.ParticleEffect.PasricalExplosionBigParameter
 tanks/io/adMod/AdAds.java
  tanks.io.adMod.AdAds
-tanks/io/Screens/MenuScreen.java
- tanks.io.Screens.MenuScreen
- tanks.io.Screens.MenuScreen$1
+tanks/io/CameraGame.java
+ tanks.io.CameraGame
 tanks/io/ClientApi/NetworkPacketStock.java
  tanks.io.ClientApi.NetworkPacketStock
 tanks/io/ParticleEffect/Explosion_Death.java
@@ -105,7 +104,9 @@ tanks/io/Units/Tanks/TowerRotation.java
  tanks.io.Units.Tanks.TowerRotation
 tanks/io/ClientApi/RequestStock.java
  tanks.io.ClientApi.RequestStock
-tanks/io/CameraGame.java
- tanks.io.CameraGame
-tanks/io/ClientApi/StandratPackage.java
- tanks.io.ClientApi.StandratPackage
+tanks/io/MainGame.java
+ tanks.io.MainGame
+tanks/io/Screens/MenuScreen.java
+ tanks.io.Screens.MenuScreen
+ tanks.io.Screens.MenuScreen$1
+ tanks.io.Screens.MenuScreen$2
