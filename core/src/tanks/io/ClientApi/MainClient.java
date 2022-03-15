@@ -17,6 +17,7 @@ import tanks.io.MainGame;
 public class MainClient {
 
     private Client client;   //клиент
+    private boolean onLine;
     private MainGame mg;
     private boolean connect;
     private NetworkPacketStock networkPacketStock;
@@ -37,6 +38,7 @@ public class MainClient {
         otherPlayer = new TreeMap<>();
         frameUpdates = new HashMap<>();
         inDequePacket = new ArrayDeque<>();
+        onLine = true;
     }
 
     private void startClirnt() {
@@ -54,7 +56,7 @@ public class MainClient {
     //////////////////
 
     public void router(Object object) {
-
+        if(!onLine) return;
         if (object instanceof Network.PleyerPositionNom) { // полученеи позиции играков
             // System.out.println("PleyerPositionNom");
             Network.PleyerPositionNom pp = (Network.PleyerPositionNom) object;
@@ -115,8 +117,8 @@ public class MainClient {
     }
 
     public boolean coonectToServer() {
+        if(!onLine)  return false;
         client.start();
-
         //  client.connect(5000, Network.ip, Network.tcpPort, Network.udpPort);
         //client.start();
         //  client.setName(NikName.getNikName());
@@ -165,12 +167,14 @@ public class MainClient {
     }
 
     public void upDateClient() {
+        if(!onLine) return;
 //        if(!client.isConnected()) {
 //            if(MathUtils.randomBoolean(.005f)) coonKtToServer();
 //            return;}
 
         if (!client.isConnected()) {
             try {
+
                 if (MathUtils.randomBoolean(.005f))
                     client.reconnect();
             } catch (IOException e) {
@@ -204,6 +208,7 @@ public class MainClient {
     }
 
     public void sendMuCoordinat(float x, float y, float rot, float rotTower) {
+        if(!onLine) return;
         // if(MathUtils.randomBoolean(.85f)) return;
         sendOutgoingQueue();
         /// фильтрация по дельте
@@ -229,6 +234,15 @@ public class MainClient {
 
     public NetworkPacketStock getNetworkPacketStock() {
         return networkPacketStock;
+    }
+
+    public boolean isOnLine() {
+        return onLine;
+    }
+
+    public void setOnLine(boolean onLine) {
+        this.onLine = onLine;
+        this.networkPacketStock.setOnline(onLine);
     }
 }
 

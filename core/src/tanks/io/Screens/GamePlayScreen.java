@@ -120,14 +120,17 @@ public class GamePlayScreen implements Screen {
         this.getGameSpace().getRadspurens().randerRadspurens(batch);                            // следы от танка
         this.pc.randerGarbage(batch);
 
-        this.tanksOther.randerOtherTanks(getBatch());                                           // визуализация других танков
+
+
+        this.tanksOther.updateOtherTank(mainGame.getMainClient().isOnLine()); /// обновление других танков с сервреа (позиция) или локальной зоны
+        this.tanksOther.randerOtherTanks(getBatch());      // визуализация других танков
         this.tank.renderTank(controller.getDirectionMovement(), controller.isInTuchMove());     //рендер основного танка
 
 /////////////стрельба
 
         this.bullets.randerBullets();
         this.pc.render(getBatch());
-        this.startFlashForMainTank();                                                           // вспышка из дула и вспышка вокруг танка
+        if(mainGame.getMainClient().isOnLine())this.startFlashForMainTank(); else startFlashForMainTankSP();                                                           // вспышка из дула и вспышка вокруг танка
 
 /////////////
 //        Vector2 smooke = tank.getPosition().cpy().sub(tank.getDirection_tower().cpy().nor().scl(-20 ));
@@ -137,7 +140,7 @@ public class GamePlayScreen implements Screen {
         //////////////////////////////////////
 
         this.batch.end();
-     //   this.getGameSpace().getLighting().renderLights(cameraGame.getCamera());
+        this.getGameSpace().getLighting().renderLights(cameraGame.getCamera());
         this.controller.draw();
         this.getBatch().setColor(1, 1, 1, 1);
 
@@ -218,17 +221,26 @@ public class GamePlayScreen implements Screen {
         Vector2 smooke = tank.getPosition().cpy().sub(tank.getDirection_tower().cpy().nor().scl(-30));
         if (controller.isAttackButon()) {
             if (!tank.redyToAttack()) return;
-//            audioEngine.pleySoundKickStick();
-//            this.pc.addPasricalExplosion(.3f, smooke.x, smooke.y);
-//            this.pc.addParticalsSmokeOne(smooke.x, smooke.y);
-//            getGameSpace().getLighting().getBuletFlash().newFlesh(tank.getPosition().x, tank.getPosition().y);
-/////////////////
             System.out.println("startFlashForMainTank !! Generator new Buulet");
             this.getMainGame().getMainClient().getNetworkPacketStock().toSendMyShot(smooke.x, smooke.y, tank.getDirection_tower().angleDeg());
-
         }
+    }
 
 
+
+
+    private void startFlashForMainTankSP() {
+        Vector2 smooke = tank.getPosition().cpy().sub(tank.getDirection_tower().cpy().nor().scl(-34));
+        if (controller.isAttackButon()) {
+            if (!tank.redyToAttack()) return;
+
+            bullets.addBullet(smooke,getTank().getDirection_tower().cpy(),1);
+            getAudioEngine().pleySoundKickStick();
+            pc.addPasricalDeath_little(smooke.x, smooke.y, 2.7f);
+
+            System.out.println("startFlashForMainTank !! Generator new Buulet SP");
+            //this.getMainGame().getMainClient().getNetworkPacketStock().toSendMyShot(smooke.x, smooke.y, tank.getDirection_tower().angleDeg());
+        }
     }
 
     public AssetManager getAssetsManagerGame() {

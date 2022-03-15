@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TowerRotation { /// поворот любой башни ЛОГИКА
+public class TowerRotation { /// поворот любой башни ЛОГИКА - входит в класс танка одного
 
     private HashMap<Float, Integer> targetTreet; // цели - угол до цели - номер цели )))
     private HashMap<Integer, OpponentsTanks> listOpponents;

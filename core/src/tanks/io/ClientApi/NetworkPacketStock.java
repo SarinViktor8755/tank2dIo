@@ -18,6 +18,7 @@ public class NetworkPacketStock { /// входящие сообщения
     HashMap<Integer, PacketModel> outList; // лист выходных сообщений
     HashMap<Integer, PacketModel> inList; // лист входных сообщений
     CopyOnWriteArrayList<Integer> inListMass;
+    private boolean online;
 
 
     int myId = -1;
@@ -26,6 +27,7 @@ public class NetworkPacketStock { /// входящие сообщения
 
     @SuppressWarnings("NewApi")
     public NetworkPacketStock() {
+        this.online = true;
         this.packetDeque = new LinkedBlockingDeque<>();
         for (int i = 0; i < 150; i++) {
             this.packetDeque.add(new PacketModel());
@@ -47,6 +49,10 @@ public class NetworkPacketStock { /// входящие сообщения
 
 
     public void updatOutLint(Client client) { // проверка расылка сообщений
+        if(!online){
+            this.outList.clear();
+            return;
+        }
         Integer key;
         PacketModel temp;
         Iterator<Integer> in = outList.keySet().iterator(); // отправка сообщений на сервер
@@ -116,6 +122,7 @@ public class NetworkPacketStock { /// входящие сообщения
     }
 
     public void toSendMyNik() {
+
         //System.out.println("adding Packet Tokken");
         PacketModel pm = getFreePacketModel();
         outList.put(pm.getTime_even(), pm);
@@ -221,4 +228,11 @@ public class NetworkPacketStock { /// входящие сообщения
 //    }
 
 
+    public boolean isOnline() {
+        return online;
+    }
+
+    public void setOnline(boolean online) {
+        this.online = online;
+    }
 }

@@ -157,13 +157,7 @@ public class TanksOther { /// много танков )))
     }
 
     public void randerOtherTanks(SpriteBatch sb) {
-        updateClienOtherTank(); /// обновление других танков с сервреа (позиция)
-
         OpponentsTanks t;
-
-//        if(MathUtils.randomBoolean(.05f)) {
-//            System.out.println("=================------------================");
-//            System.out.println(listOpponents);}
 
         for (Map.Entry<Integer, OpponentsTanks> tank : this.listOpponents.entrySet()) {
             t = tank.getValue();
@@ -217,15 +211,6 @@ public class TanksOther { /// много танков )))
 
             addSled(t);
 
-/////////////////////////////////
-//            if (listSled.get(tank.getKey()) > .19f) {
-//                gsp.getGameSpace().addSled(tank.getValue().getPosition().x, tank.getValue().getPosition().y, tank.getValue().getDirection().angleDeg());
-//                listSled.put(tank.getKey(), 0f);
-//            }
-///////////////////////////////////////////
-
-
-//////////////////////////////////////
         }
         sb.setColor(1, 1, 1, 1);
     }
@@ -244,6 +229,11 @@ public class TanksOther { /// много танков )))
 
     }
 
+    public void updateOtherTank(boolean onLine) {
+        if (onLine) updateClienOtherTank();
+        else updateLocalTank();
+    }
+
     public void updateClienOtherTank() {
         boolean flag_mess = false; /// флаг типа делать запрос по никам или нет
         try {
@@ -251,27 +241,17 @@ public class TanksOther { /// много танков )))
             while (key.hasNext()) {
                 int n = (int) key.next();
                 Network.PleyerPositionNom p = gsp.getMainGame().getMainClient().otherPlayer.get(n);
-
-
 ///////////////Аопросить имя игрока
                 try {
-                    //   System.out.println(this.listOpponents.get(n).getNikPlayer() );
-                    //if (this.listOpponents.get(n).getNikPlayer() == null)
                     if (this.listOpponents.get(n).getNikPlayer().length() < 1) flag_mess = true;
-
                 } catch (NullPointerException e) {
                     if (((VectorUtils.getLen2(gsp.getTank().getPosition(), p.xp, p.yp) < 110_000))) {
                         gsp.getMainGame().getMainClient().getNetworkPacketStock().toSendParametersOfPlayer(n);// nikname отображение
                     }
                 }
-
-
                 //////////////////
-
                 setTankPosition(p, gsp.getMainGame().getMainClient().frameUpdates.get(p.nom));
                 gsp.getMainGame().getMainClient().frameUpdates.put(p.nom, false); /// закрывает флаг о рендере __
-
-
             }
             /// обработка входящих сообщенийв
             ArrayDeque<PacketModel> in = gsp.getMainGame().getMainClient().inDequePacket;
@@ -285,6 +265,10 @@ public class TanksOther { /// много танков )))
         }
     }
 
+    public void updateLocalTank() {
+
+    }
+
     public void routingInMassage(PacketModel m) {
 
         if (m.getP().tip == Heading_type.MY_NIK) {
@@ -293,7 +277,7 @@ public class TanksOther { /// много танков )))
         }
 
         if (m.getP().tip == Heading_type.SHELL_RUPTURE) {
-            System.out.println("BOOOOOOOOM!!!!!!!!!!!  " + m.getP().p1+  "  "+ m.getP().p2);
+            System.out.println("BOOOOOOOOM!!!!!!!!!!!  " + m.getP().p1 + "  " + m.getP().p2);
             //gsp.getBullets().
             gsp.getBullets().removeBullet(m.getP().p3);
             gsp.pc.addPasricalDeath_little(m.getP().p1, m.getP().p2, 2.7f);
@@ -324,7 +308,6 @@ public class TanksOther { /// много танков )))
 
             return;
         }
-
 
 
         if (m.getP().tip == Heading_type.DISCONECT_PLAYER) {

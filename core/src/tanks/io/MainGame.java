@@ -59,6 +59,7 @@ public class MainGame extends Game {
 
     public void startGameMPley() {
         mainMenu.dispose();
+        getMainClient().setOnLine(true);
         assetsManagerGame.loadAllAsseGame();
         this.gsp = new GamePlayScreen(this);
         this.setScreen(this.gsp);
@@ -66,6 +67,7 @@ public class MainGame extends Game {
 
     public void startGameSPley()  {
         mainMenu.dispose();
+        getMainClient().setOnLine(false);
         assetsManagerGame.loadAllAsseGame();
         this.gsp = new GamePlayScreen(this);
         this.setScreen(this.gsp);

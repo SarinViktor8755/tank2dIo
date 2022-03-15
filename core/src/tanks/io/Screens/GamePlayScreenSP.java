@@ -33,7 +33,7 @@ public class GamePlayScreenSP extends GamePlayScreen{
     private TanksOther tanksOther;
 
     public GamePlayScreenSP(MainGame mainGame) {
-
+        getMainGame().getMainClient().setOnLine(false);
         this.mainGame = mainGame;
         this.batch = new SpriteBatch();
         this.timeInGame = 0;
@@ -54,6 +54,29 @@ public class GamePlayScreenSP extends GamePlayScreen{
         bullets = new Bullets(this);
         pc = new ParticleCustum(this, mainGame.getAssetManager().get("particle1.png", Texture.class), mainGame.getAssetManager().get("fire.png", Texture.class), mainGame.getAssetManager().get("iron.png", Texture.class),mainGame.getAssetManager().get("de.pack", TextureAtlas.class));
 
+    }
+
+
+    public void update() {
+//        getMainGame().updateClien();
+//        getMainGame().getMainClient().sendMuCoordinat(tank.getPosition().x, tank.getPosition().y, tank.getDirection().angleDeg(), tank.getTr().getAnTower());  // кинуть на сервер мои координаты
+
+        //////////    mainGame.getMainClient().getNetworkPacketStock();
+
+        //if(MathUtils.randomBoolean(.0005f)) pc.addPasricalExplosionDeath(getTank().getPosition().x,getTank().getPosition().y);
+
+//        if(MathUtils.randomBoolean(.5f)) mainGame.getMainClient().getNetworkPacketStock().toSendMyTokken();
+//        if(MathUtils.randomBoolean(.5f)) mainGame.getMainClient().getNetworkPacketStock().toSendMyNik();
+
+
+        if (controller.isChance()) {
+            controller.setChance(false);
+            tank.getTr().changeTarget();
+        }
+        timeInGame = timeInGame + Gdx.graphics.getDeltaTime(); // игрвовое время
+        if (controller.isInTuchMove()) audioEngine.pleySoundOfTracks();
+        else audioEngine.stopSoundOfTracks();
+        pos.add(controller.getDirectionMovement().cpy().scl(Gdx.graphics.getDeltaTime() * 1.5f)); /// движение танка Главного
     }
 
 

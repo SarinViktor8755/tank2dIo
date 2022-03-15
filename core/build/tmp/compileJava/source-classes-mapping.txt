@@ -2,8 +2,10 @@ tanks/io/Units/BulletPool/Bullet.java
  tanks.io.Units.BulletPool.Bullet
 tanks/io/Units/ListPlayers.java
  tanks.io.Units.ListPlayers
-tanks/io/Units/Tanks/LogikBOT.java
- tanks.io.Units.Tanks.LogikBOT
+tanks/io/ClientApi/MainClient.java
+ tanks.io.ClientApi.MainClient
+ tanks.io.ClientApi.MainClient$1
+ tanks.io.ClientApi.MainClient$1$1
 tanks/io/Locations/Collision/BoxCollision.java
  tanks.io.Locations.Collision.BoxCollision
 tanks/io/ParticleEffect/Garbage.java
@@ -12,30 +14,35 @@ tanks/io/Locations/UtilsLighting/b2d/BodyBuilder.java
  tanks.io.Locations.UtilsLighting.b2d.BodyBuilder
 tanks/io/ParticleEffect/ParticleSmoke.java
  tanks.io.ParticleEffect.ParticleSmoke
-tanks/io/Units/Tanks/LogikTank.java
- tanks.io.Units.Tanks.LogikTank
+tanks/io/adMod/AdAds.java
+ tanks.io.adMod.AdAds
 tanks/io/Locations/RadspurenTank.java
  tanks.io.Locations.RadspurenTank
 tanks/io/ClientApi/StandratPackage.java
  tanks.io.ClientApi.StandratPackage
-tanks/io/Screens/GamePlayScreen.java
- tanks.io.Screens.GamePlayScreen
-tanks/io/Locations/Collision/MainCollision.java
- tanks.io.Locations.Collision.MainCollision
-tanks/io/Units/Tanks/TanksOther.java
- tanks.io.Units.Tanks.TanksOther
-tanks/io/Locations/LightingBox2D.java
- tanks.io.Locations.LightingBox2D
+tanks/io/CameraGame.java
+ tanks.io.CameraGame
+tanks/io/ParticleEffect/Explosion_Death.java
+ tanks.io.ParticleEffect.Explosion_Death
+tanks/io/Units/Tanks/TowerRotation.java
+ tanks.io.Units.Tanks.TowerRotation
+tanks/io/ClientApi/Network.java
+ tanks.io.ClientApi.Network
+ tanks.io.ClientApi.Network$Answer
+ tanks.io.ClientApi.Network$PleyerPosition
+ tanks.io.ClientApi.Network$PleyerPositionNom
+ tanks.io.ClientApi.Network$StockMess
+ tanks.io.ClientApi.Network$rc
 tanks/io/ClientApi/PleyerPositionBuffer.java
  tanks.io.ClientApi.PleyerPositionBuffer
-tanks/io/Units/Tanks/OpponentsTanks.java
- tanks.io.Units.Tanks.OpponentsTanks
+tanks/io/ClientApi/Heading_type.java
+ tanks.io.ClientApi.Heading_type
 tanks/io/Utils/VectorUtils.java
  tanks.io.Utils.VectorUtils
 tanks/io/Assets/AssetsManagerGame.java
  tanks.io.Assets.AssetsManagerGame
-tanks/io/Units/Tanks/Tank.java
- tanks.io.Units.Tanks.Tank
+tanks/io/Locations/Radspurens.java
+ tanks.io.Locations.Radspurens
 tanks/io/Locations/Collision/CircleCollision.java
  tanks.io.Locations.Collision.CircleCollision
 tanks/io/Locations/UtilsLighting/Constants.java
@@ -46,67 +53,62 @@ tanks/io/ClientApi/PacketModel.java
  tanks.io.ClientApi.PacketModel
 tanks/io/adMod/AdMod.java
  tanks.io.adMod.AdMod
-tanks/io/InputProcessor/InputProcessorPC.java
- tanks.io.InputProcessor.InputProcessorPC
-tanks/io/Locations/GameSpace.java
- tanks.io.Locations.GameSpace
-tanks/io/ParticleEffect/ParticleCustum.java
- tanks.io.ParticleEffect.ParticleCustum
-tanks/io/Units/Bullets.java
- tanks.io.Units.Bullets
+tanks/io/ParticleEffect/ParticalShootFlash.java
+ tanks.io.ParticleEffect.ParticalShootFlash
+tanks/io/Screens/MenuScreen.java
+ tanks.io.Screens.MenuScreen
+ tanks.io.Screens.MenuScreen$1
+ tanks.io.Screens.MenuScreen$2
+tanks/io/ParticleEffect/PasricalExplosion.java
+ tanks.io.ParticleEffect.PasricalExplosion
+tanks/io/ClientApi/NetworkPacketStock.java
+ tanks.io.ClientApi.NetworkPacketStock
 tanks/io/Locations/UtilsLighting/b2d/LightBuilder.java
  tanks.io.Locations.UtilsLighting.b2d.LightBuilder
-tanks/io/Screens/Controll/Controller.java
- tanks.io.Screens.Controll.Controller
- tanks.io.Screens.Controll.Controller$1
- tanks.io.Screens.Controll.Controller$2
- tanks.io.Screens.Controll.Controller$3
+tanks/io/Locations/BuletFlash.java
+ tanks.io.Locations.BuletFlash
+tanks/io/ClientApi/RequestStock.java
+ tanks.io.ClientApi.RequestStock
 tanks/io/Units/NikName.java
  tanks.io.Units.NikName
 tanks/io/Units/Player.java
  tanks.io.Units.Player
 tanks/io/Locations/UtilsLighting/b2d/JointBuilder.java
  tanks.io.Locations.UtilsLighting.b2d.JointBuilder
-tanks/io/ParticleEffect/ParticalShootFlash.java
- tanks.io.ParticleEffect.ParticalShootFlash
-tanks/io/Locations/Radspurens.java
- tanks.io.Locations.Radspurens
+tanks/io/Units/Tanks/Tank.java
+ tanks.io.Units.Tanks.Tank
+tanks/io/Units/Tanks/LogikBOT.java
+ tanks.io.Units.Tanks.LogikBOT
 tanks/io/AudioEngine/AudioEngine.java
  tanks.io.AudioEngine.AudioEngine
-tanks/io/ClientApi/Network.java
- tanks.io.ClientApi.Network
- tanks.io.ClientApi.Network$Answer
- tanks.io.ClientApi.Network$PleyerPosition
- tanks.io.ClientApi.Network$PleyerPositionNom
- tanks.io.ClientApi.Network$StockMess
- tanks.io.ClientApi.Network$rc
-tanks/io/ClientApi/Heading_type.java
- tanks.io.ClientApi.Heading_type
-tanks/io/Locations/BuletFlash.java
- tanks.io.Locations.BuletFlash
-tanks/io/ClientApi/MainClient.java
- tanks.io.ClientApi.MainClient
- tanks.io.ClientApi.MainClient$1
- tanks.io.ClientApi.MainClient$1$1
-tanks/io/ParticleEffect/PasricalExplosion.java
- tanks.io.ParticleEffect.PasricalExplosion
+tanks/io/Locations/GameSpace.java
+ tanks.io.Locations.GameSpace
+tanks/io/ParticleEffect/ParticleCustum.java
+ tanks.io.ParticleEffect.ParticleCustum
+tanks/io/Units/Tanks/LogikTank.java
+ tanks.io.Units.Tanks.LogikTank
+tanks/io/Units/Bullets.java
+ tanks.io.Units.Bullets
 tanks/io/ParticleEffect/PasricalExplosionBigParameter.java
  tanks.io.ParticleEffect.PasricalExplosionBigParameter
-tanks/io/adMod/AdAds.java
- tanks.io.adMod.AdAds
-tanks/io/CameraGame.java
- tanks.io.CameraGame
-tanks/io/ClientApi/NetworkPacketStock.java
- tanks.io.ClientApi.NetworkPacketStock
-tanks/io/ParticleEffect/Explosion_Death.java
- tanks.io.ParticleEffect.Explosion_Death
-tanks/io/Units/Tanks/TowerRotation.java
- tanks.io.Units.Tanks.TowerRotation
-tanks/io/ClientApi/RequestStock.java
- tanks.io.ClientApi.RequestStock
 tanks/io/MainGame.java
  tanks.io.MainGame
-tanks/io/Screens/MenuScreen.java
- tanks.io.Screens.MenuScreen
- tanks.io.Screens.MenuScreen$1
- tanks.io.Screens.MenuScreen$2
+tanks/io/Screens/GamePlayScreen.java
+ tanks.io.Screens.GamePlayScreen
+tanks/io/Locations/Collision/MainCollision.java
+ tanks.io.Locations.Collision.MainCollision
+tanks/io/Screens/Controll/Controller.java
+ tanks.io.Screens.Controll.Controller
+ tanks.io.Screens.Controll.Controller$1
+ tanks.io.Screens.Controll.Controller$2
+ tanks.io.Screens.Controll.Controller$3
+tanks/io/Units/Tanks/TanksOther.java
+ tanks.io.Units.Tanks.TanksOther
+tanks/io/Locations/LightingBox2D.java
+ tanks.io.Locations.LightingBox2D
+tanks/io/Units/Tanks/OpponentsTanks.java
+ tanks.io.Units.Tanks.OpponentsTanks
+tanks/io/Screens/GamePlayScreenSP.java
+ tanks.io.Screens.GamePlayScreenSP
+tanks/io/InputProcessor/InputProcessorPC.java
+ tanks.io.InputProcessor.InputProcessorPC
