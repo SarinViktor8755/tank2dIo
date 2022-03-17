@@ -15,7 +15,6 @@ import tanks.io.Units.BulletPool.BulletPool;
 public class Bullets {
     Texture img;
 
-
     private final Array<Bullet> activeBullets = new Array<>();
     private final BulletPool bp = new BulletPool();
     private final int MAX_distribution_smoke = 3;

@@ -33,7 +33,7 @@ public class GamePlayScreenSP extends GamePlayScreen{
     private TanksOther tanksOther;
 
     public GamePlayScreenSP(MainGame mainGame) {
-        getMainGame().getMainClient().setOnLine(false);
+        getMainGame().getMainClient().setOnLine(true);
         this.mainGame = mainGame;
         this.batch = new SpriteBatch();
         this.timeInGame = 0;

@@ -131,19 +131,23 @@ public class TanksOther { /// много танков )))
                 listSled.put(p.nom, listSled.get(p.nom) + Gdx.graphics.getDeltaTime()); /// СЛЕДЫ
         } else {
             try {
-                OpponentsTanks r = new OpponentsTanks(
-                        new Vector2(p.xp, p.yp),
-                        new Vector2(1, 0),
-                        0, true,
-                        p.nom, listOpponents, gsp
-                );
-                listOpponents.put(p.nom, r);
-                listSled.put(p.nom, .0f);
-                //deltaSledVec.put(p.nom,new Vector2(p.xp,p.yp));
+                createOponent(p.xp, p.yp,p.nom,p.roy_tower);
             } catch (NullPointerException e) {
 
             }
         }
+    }
+
+    /////////////
+    public void createOponent(float x, float y, int nomer, float rotation) {
+        OpponentsTanks r = new OpponentsTanks(
+                new Vector2(x, y),
+                new Vector2(1, 0),
+                0, true,
+                nomer, listOpponents, gsp
+        );
+        listOpponents.put(nomer, r);
+        listSled.put(nomer, .0f);
     }
 
 

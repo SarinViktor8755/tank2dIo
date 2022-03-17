@@ -32,13 +32,14 @@ public class GameSpace {
 
     ShapeRenderer shapeRenderer;
 
-
+    static String MAP_DESETRT = "map/desert.tmx";
     private TiledMapTileLayer decorations;
     private TiledMapTileLayer ground;
 
     MainCollision mainCollision;
 
     public GameSpace(GamePlayScreen gps) {
+
         this.gps = gps;
         radspurens = new Radspurens(gps.getAssetsManagerGame().get("sled.png", Texture.class));
 
@@ -66,7 +67,7 @@ public class GameSpace {
 
         for (int i = 0; i < obstacles.getObjects().getCount(); i++) {
 
-            if (obstacles.getObjects().get(i) instanceof RectangleMapObject) {
+            if (obstacles.getObjects().get(i) instanceof RectangleMapObject) { /// прямоугольники
                 RectangleMapObject a = (RectangleMapObject) obstacles.getObjects().get(i);
                 Vector2 ln = new Vector2(a.getRectangle().x, a.getRectangle().y);
                 Vector2 ru = new Vector2(a.getRectangle().x + a.getRectangle().getWidth(), a.getRectangle().y + a.getRectangle().getHeight());
@@ -79,7 +80,7 @@ public class GameSpace {
                         (int) a.getRectangle().getHeight() / 2,
                         true, true);
             }
-            if (obstacles.getObjects().get(i) instanceof EllipseMapObject) {
+            if (obstacles.getObjects().get(i) instanceof EllipseMapObject) { /// круги создание
 
                 EllipseMapObject ellipse = (EllipseMapObject) obstacles.getObjects().get(i);
 //                System.out.println("::::::::  "+ ellipse.getEllipse().x);
@@ -92,7 +93,13 @@ public class GameSpace {
                 BodyBuilder.createCircle(getLighting().getWorld(),  x, y, r); }
         }
 
+        System.out.println(mainCollision);
+    }
 
+    public boolean checkObstacles(Vector2 pos){ // проверянет координаты с обьектами
+        if(mainCollision.isCircleCircle(pos)) return false;
+        if(mainCollision.isCollisionsRectangle(pos)) return false;
+        return true;
     }
 
     public MainCollision getMainCollision() {
@@ -150,6 +157,11 @@ public class GameSpace {
      //    rendererMap.render();
         // createShape();
     }
+    public boolean inPointLocation(float x, float y) {
+        if ((x < 0) || (y < 0)) return false;
+        if ((x > WITH_LOCATION) || (y > HEIHT_LOCATION)) return false;
+        return true;
+    }
 
     public Radspurens getRadspurens() {
         return radspurens;
@@ -169,15 +181,6 @@ public class GameSpace {
 
     public void dispouseMap() {
         map.dispose();
-    }
-
-
-    static String MAP_DESETRT = "map/desert.tmx";
-
-    public boolean inPointLocation(float x, float y) {
-        if ((x < 0) || (y < 0)) return false;
-        if ((x > WITH_LOCATION) || (y > HEIHT_LOCATION)) return false;
-        return true;
     }
 
     public boolean inPointLocation(Vector2 point) {
@@ -214,6 +217,8 @@ public class GameSpace {
         if (p.y < 0) return false;
         return true;
     }
+
+
 
 
 

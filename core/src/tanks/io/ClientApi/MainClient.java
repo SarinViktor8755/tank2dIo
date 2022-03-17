@@ -1,5 +1,6 @@
 package tanks.io.ClientApi;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
@@ -16,10 +17,12 @@ import tanks.io.MainGame;
 
 public class MainClient {
 
+
+    public float aplphaConnect;
     private Client client;   //клиент
     private boolean onLine;
     private MainGame mg;
-    private boolean connect;
+
     private NetworkPacketStock networkPacketStock;
     public TreeMap<Integer, Network.PleyerPositionNom> otherPlayer;
     public HashMap<Integer, Boolean> frameUpdates; //Обновления кадра для играков
@@ -29,11 +32,13 @@ public class MainClient {
     public int myIdConnect; //Мой ИД
 
     public MainClient(MainGame mainGame) {
+        aplphaConnect = 0;
         this.mg = mainGame;
         this.networkPacketStock = new NetworkPacketStock();
+
         this.startClirnt();
-        Network.register(client);
         coonKtToServer();
+
         pp = new Network.PleyerPosition();
         otherPlayer = new TreeMap<>();
         frameUpdates = new HashMap<>();
@@ -43,8 +48,18 @@ public class MainClient {
 
     private void startClirnt() {
         this.client = new Client();
+        Network.register(client);
         this.client.start();
         //   this.client.setName(NikName.getTokken());
+    }
+
+    public void updateAlphaW() { // обновление альфа канала фона
+        if (client.isConnected())
+            this.aplphaConnect += Gdx.graphics.getDeltaTime() / 10;
+        else this.aplphaConnect -= Gdx.graphics.getDeltaTime() / 10;
+        aplphaConnect = MathUtils.clamp(aplphaConnect, .45f, 1);
+        System.out.println("aplphaConnect" + aplphaConnect);
+
     }
 
 
@@ -56,7 +71,7 @@ public class MainClient {
     //////////////////
 
     public void router(Object object) {
-        if(!onLine) return;
+        if (!onLine) return;
         if (object instanceof Network.PleyerPositionNom) { // полученеи позиции играков
             // System.out.println("PleyerPositionNom");
             Network.PleyerPositionNom pp = (Network.PleyerPositionNom) object;
@@ -92,12 +107,12 @@ public class MainClient {
             // client.sendUDP(((Network.StockMess) object).time_even);
             ////////////////////
             Network.StockMess ns = (Network.StockMess) object;
-           // System.out.println("          ----*------    "+ns.textM);
+            // System.out.println("          ----*------    "+ns.textM);
             if (networkPacketStock.inList.get(nom) != null) return; // проверка сообщения на повтор
             System.out.println(nom + " - incoming package number");
-           // System.out.println("No!");
-          //  System.out.println("!!!!!!!!!_--------------------------!!!!!!!!!!!!!!!!!!!!!11" + ns.textM);
-                /// БЕРЕМ ПАКЕТ И ЗАОЛНЯЕМ
+            // System.out.println("No!");
+            //  System.out.println("!!!!!!!!!_--------------------------!!!!!!!!!!!!!!!!!!!!!11" + ns.textM);
+            /// БЕРЕМ ПАКЕТ И ЗАОЛНЯЕМ
             PacketModel pm = networkPacketStock.getFreePacketModel();
             pm.setParametrs(ns.tip, ns.p1, ns.p2, ns.p3, ns.p4, ns.p5, ns.p6, ns.textM);
             this.networkPacketStock.inList.put(nom, pm); // доавбатиь во входящий пакеты - журнал входящих сообщений
@@ -117,11 +132,12 @@ public class MainClient {
     }
 
     public boolean coonectToServer() {
-        if(!onLine)  return false;
+        // if(!onLine)  return false;
         client.start();
         //  client.connect(5000, Network.ip, Network.tcpPort, Network.udpPort);
         //client.start();
         //  client.setName(NikName.getNikName());
+
         new Thread("Connect") {
             public void run() {
                 try {
@@ -143,7 +159,7 @@ public class MainClient {
                         }
                     });
 
-                } catch (IOException|NullPointerException ex) {
+                } catch (IOException | NullPointerException ex) {
                     ex.printStackTrace();
                 }
 
@@ -154,7 +170,8 @@ public class MainClient {
     }
 
     public boolean coonKtToServer() {
-        this.connect = coonectToServer();
+        System.out.println("Connect to server");
+        this.onLine = coonectToServer();
         return client.isConnected();
     }
 
@@ -163,11 +180,13 @@ public class MainClient {
     }
 
     public boolean isConnect() {
+        System.out.println("onLine " + this.onLine);
         return client.isConnected();
     }
 
     public void upDateClient() {
-        if(!onLine) return;
+
+        if (!onLine) return;
 //        if(!client.isConnected()) {
 //            if(MathUtils.randomBoolean(.005f)) coonKtToServer();
 //            return;}
@@ -178,6 +197,8 @@ public class MainClient {
                 if (MathUtils.randomBoolean(.005f))
                     client.reconnect();
             } catch (IOException e) {
+                e.printStackTrace();
+            } catch (IllegalStateException e) {
                 e.printStackTrace();
             }
             return;
@@ -208,7 +229,7 @@ public class MainClient {
     }
 
     public void sendMuCoordinat(float x, float y, float rot, float rotTower) {
-        if(!onLine) return;
+        if (!onLine) return;
         // if(MathUtils.randomBoolean(.85f)) return;
         sendOutgoingQueue();
         /// фильтрация по дельте

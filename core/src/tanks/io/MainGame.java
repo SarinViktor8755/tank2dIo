@@ -35,11 +35,14 @@ public class MainGame extends Game {
         assetManager = new AssetManager();
         assetsManagerGame = new AssetsManagerGame(assetManager);
 
+
+        mainClient = new MainClient(this);
         // this.getAllAssets();
 
         if (tip == 1) ANDROID = true;
         else ANDROID = false;
-        mainClient = new MainClient(this);
+
+
 
     }
 
@@ -107,6 +110,7 @@ public class MainGame extends Game {
     }
 
     public void updateClien() {
+
         this.getMainClient().upDateClient();
     }
 

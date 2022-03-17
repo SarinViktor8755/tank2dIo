@@ -39,6 +39,7 @@ public class MenuScreen implements Screen {
     private Texture wallpaper;
     private Texture wallpaper1;
     private Texture logo;
+    private Texture disconnect;
 
     private float timeInScreen;
     private float timerStartGame; // переменная для анимации
@@ -84,6 +85,7 @@ public class MenuScreen implements Screen {
         wallpaper = mainGame.assetManager.get("menuAsset/wallpaper.png", Texture.class);
         wallpaper1 = mainGame.assetManager.get("menuAsset/wallpaper1.png", Texture.class);
         logo = mainGame.assetManager.get("menuAsset/logo.png", Texture.class);
+        disconnect = mainGame.assetManager.get("menuAsset/disconct.jpg", Texture.class);
 
         stageMenu = new Stage(viewport);
 
@@ -201,20 +203,32 @@ public class MenuScreen implements Screen {
 
     @Override
     public void render(float delta) {
-
         upDateScreen();
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         this.camera.update();
         this.batch.setProjectionMatrix(camera.combined);
         this.batch.begin();
+
+
         batch.setColor(1 - timerStartGame, 1 - timerStartGame, 1 - timerStartGame, 1);
+
+
         //batch.draw(wallpaper1,0,0,camera.viewportWidth, camera.viewportHeight,1,2,(int)camera.viewportWidth,(int) camera.viewportHeight,false,false);
         //System.out.println((MathUtils.sin(timeInScreen) + 1)/2);
-        batch.draw(wallpaper1, viewport.getScreenX(), viewport.getScreenY() + ((MathUtils.sin(timeInScreen) + 1) / 2) * 20);
+
+            batch.setColor(1 - timerStartGame, 1 - timerStartGame, 1,mainGame.getMainClient().aplphaConnect);
+            batch.draw(wallpaper1, viewport.getScreenX(), viewport.getScreenY() + ((MathUtils.sin(timeInScreen) + 1) / 2) * 20);
+            batch.setColor(1 - timerStartGame, 1 - timerStartGame, 1,1);
+
         batch.draw(wallpaper, viewport.getScreenX(), viewport.getScreenY() - ((Interpolation.bounce.apply((MathUtils.sin(timeInScreen) + 1) / 2) * 10)));
 
         batch.draw(logo, viewport.getScreenX(), viewport.getScreenY() + 14 + ((MathUtils.cos(timeInScreen * 3) + 1) / 2) * 20);
+
+        if (!mainClient.isConnect()) {
+            //batch.setColor(1 - timerStartGame, 1 - timerStartGame, 1,(MathUtils.sin(timeInScreen) +.5f));
+            batch.draw(disconnect, viewport.getScreenX(), viewport.getScreenY() + ((MathUtils.sin(timeInScreen) + 1) / 2) * 20, 50, 50);
+        }
         this.batch.end();
         stageMenu.draw();
 
@@ -222,6 +236,8 @@ public class MenuScreen implements Screen {
     }
 
     private void upDateScreen() {
+        System.out.println("!!!" + mainClient.getClient().isConnected() + " ___ isOnLine" + mainGame.getMainClient().isOnLine());
+        mainGame.getMainClient().updateAlphaW();
         mainGame.updateClien();
        // statusConnetct.setText(mainClient.getClient().isConnected() +"");
         this.timeInScreen = Gdx.graphics.getDeltaTime() + this.timeInScreen;

@@ -17,7 +17,7 @@ public class MainCollision {
     public MainCollision(GamePlayScreen gsp) {
         this.gsp = gsp;
         this.circle = new ArrayList<>();
-        box= new ArrayList<>();
+        this.box = new ArrayList<>();
     }
 
     public void addRectangleMapObject(Vector2 rn, Vector2 lu) {
@@ -40,7 +40,6 @@ public class MainCollision {
     }
 
     public boolean isCircleCircle(Vector2 pos) {
-       // System.out.println(circle);
         for (CircleCollision c : circle) {
            if (!c.isCollisionCircle(pos)) return false;
         }
