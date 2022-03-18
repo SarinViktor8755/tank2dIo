@@ -33,7 +33,7 @@ public class AssetsManagerGame {
         assets.put("menuAsset/wallpaper1.png", Texture.class);
         assets.put("menuAsset/pley.png", Texture.class);
         assets.put("menuAsset/logo.png", Texture.class);
-        assets.put("menuAsset/disconct.jpg", Texture.class);
+        assets.put("menuAsset/disconct.png", Texture.class);
 
         assets.put("skin/uiskin.json", Skin.class);
 

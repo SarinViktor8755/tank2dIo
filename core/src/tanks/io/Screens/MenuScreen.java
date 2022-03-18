@@ -85,7 +85,7 @@ public class MenuScreen implements Screen {
         wallpaper = mainGame.assetManager.get("menuAsset/wallpaper.png", Texture.class);
         wallpaper1 = mainGame.assetManager.get("menuAsset/wallpaper1.png", Texture.class);
         logo = mainGame.assetManager.get("menuAsset/logo.png", Texture.class);
-        disconnect = mainGame.assetManager.get("menuAsset/disconct.jpg", Texture.class);
+        disconnect = mainGame.assetManager.get("menuAsset/disconct.png", Texture.class);
 
         stageMenu = new Stage(viewport);
 

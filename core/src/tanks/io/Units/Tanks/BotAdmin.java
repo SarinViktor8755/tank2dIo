@@ -17,10 +17,12 @@ public class BotAdmin {/// локальные боты
     }
 
     public void upDateBotBehaviour() { // поведение бота
-        float del = Gdx.graphics.getDeltaTime();
+        System.out.println(gsp.getTanksOther().listOpponents.size());
         // создание локальных ботов
         if (gsp.getTanksOther().listOpponents.size() < 50) {
-            gsp.getTanksOther().createOponent(50, 50, MathUtils.random(45), MathUtils.random(45));
+            int nomPayer = gsp.getTanksOther().createOponent(50, 50, MathUtils.random(45), MathUtils.random(45));
+            gsp.getTanksOther().getTankForID(nomPayer).setNikPlayer(getNikNameGen());
+            System.out.println("create bot" );
         }
         for (int i = 0; i < gsp.getTanksOther().listOpponents.size(); i++) {
 
@@ -39,7 +41,6 @@ public class BotAdmin {/// локальные боты
 
 
     }
-
 
     static String getNikNameGen() {
         ArrayList<String> names = new ArrayList<>();

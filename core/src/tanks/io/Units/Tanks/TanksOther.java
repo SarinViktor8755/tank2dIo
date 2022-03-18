@@ -50,6 +50,8 @@ public class TanksOther { /// много танков )))
     Vector2 temp;
     Vector2 tRotation;
 
+    BotAdmin botAdmin;
+
 
     public TanksOther(GamePlayScreen gsp) {
         this.gsp = gsp;
@@ -139,7 +141,7 @@ public class TanksOther { /// много танков )))
     }
 
     /////////////
-    public void createOponent(float x, float y, int nomer, float rotation) {
+    public int createOponent(float x, float y, int nomer, float rotation) {
         OpponentsTanks r = new OpponentsTanks(
                 new Vector2(x, y),
                 new Vector2(1, 0),
@@ -148,10 +150,11 @@ public class TanksOther { /// много танков )))
         );
         listOpponents.put(nomer, r);
         listSled.put(nomer, .0f);
+        return nomer;
     }
 
 
-    private boolean imCanmove(int x, int y) {
+    private boolean inCanMove(int x, int y) {
         gsp.getGameSpace().checkMapBorders(x, y);
         return true;
     }
@@ -172,7 +175,6 @@ public class TanksOther { /// много танков )))
 
 
             t.update(Gdx.graphics.getDeltaTime());
-
 
             //   t.setCommand(MathUtils.random(1,2));
             //  System.out.println("command " + t.getCommand());

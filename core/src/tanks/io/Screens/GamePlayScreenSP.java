@@ -16,6 +16,7 @@ import tanks.io.Screens.Controll.Controller;
 import tanks.io.Units.Bullets;
 import tanks.io.Units.Tanks.Tank;
 import tanks.io.Units.Tanks.TanksOther;
+import tanks.io.Units.Tanks.TanksOtherSP;
 
 public class GamePlayScreenSP extends GamePlayScreen{
     private MainGame mainGame;
@@ -30,16 +31,16 @@ public class GamePlayScreenSP extends GamePlayScreen{
     public Vector2 pos;
     private Bullets bullets;
     public ParticleCustum pc;
-    private TanksOther tanksOther;
+    private TanksOtherSP tanksOther;
 
     public GamePlayScreenSP(MainGame mainGame) {
-        getMainGame().getMainClient().setOnLine(true);
+       // getMainGame().getMainClient().setOnLine(true);
         this.mainGame = mainGame;
         this.batch = new SpriteBatch();
         this.timeInGame = 0;
         this.gameSpace = new GameSpace(this);
         this.audioEngine = new AudioEngine(this);
-        this.tanksOther = new TanksOther(this);
+        this.tanksOther = new TanksOtherSP(this);
         this.inputProcessorPC = new InputProcessorPC(this);
         Gdx.input.setInputProcessor(inputProcessorPC);
         this.pos = new Vector2(150, 150);

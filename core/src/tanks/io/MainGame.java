@@ -10,6 +10,7 @@ import java.io.IOException;
 import tanks.io.Assets.AssetsManagerGame;
 import tanks.io.ClientApi.MainClient;
 import tanks.io.Screens.GamePlayScreen;
+import tanks.io.Screens.GamePlayScreenSP;
 import tanks.io.Screens.MenuScreen;
 import tanks.io.Units.NikName;
 import tanks.io.adMod.AdAds;
@@ -72,7 +73,7 @@ public class MainGame extends Game {
         mainMenu.dispose();
         getMainClient().setOnLine(false);
         assetsManagerGame.loadAllAsseGame();
-        this.gsp = new GamePlayScreen(this);
+        this.gsp = new GamePlayScreenSP(this);
         this.setScreen(this.gsp);
         try {
             mainClient.getClient().dispose();
